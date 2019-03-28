@@ -4,6 +4,8 @@ const omdb = require('./omdb.js')
 
 const app = express()
 
+const port = process.env.PORT || 3000
+
 const publicDir = path.join(__dirname, 'public')
 
 app.use(express.static(publicDir))
@@ -33,6 +35,11 @@ app.get('/productos/', function(req, res) {
     productos: []
   })
 })
+
+app.listen(port, function() {
+  console.log('eso verga')
+})
+
 
 app.get('/omdb', function(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -83,8 +90,4 @@ app.get('*', function(req, res) {
   res.send({
     error: 'Esta ruta no existe'
   })
-})
-
-app.listen('3000', function() {
-  console.log('eso verga')
 })
